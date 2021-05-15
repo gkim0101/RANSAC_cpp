@@ -40,6 +40,7 @@ void readData(std::vector<Point> &points){
 	for(std::vector<Point>::iterator itr=points.begin();itr!=points.end();itr++){
 		std::cout<<"x="<<itr->x<<" y="<<itr->y<<std::endl;
 	}
+	file.close();
 }
 
 //line feature extraction a,b,c
