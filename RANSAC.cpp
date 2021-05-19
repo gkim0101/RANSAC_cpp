@@ -45,7 +45,8 @@ void readFile(std::vector<Point> &points){
 
 void lineAug(std::vector<Line> &lines,Point p1, Point p2){
 	double a,b,c;
-	a=(p2.y-p1.y);
+	//equation incorrect
+	a=-(p2.y-p1.y);
 	b=(p2.x-p1.x);
 	c=-( a*p1.x+b*p1.y  );
 	Line tmp_l(a,b,c);
@@ -53,7 +54,12 @@ void lineAug(std::vector<Line> &lines,Point p1, Point p2){
 }
 
 double linepointDist(Line l,Point p){
-	return ( std::abs(l.a*p.x+l.b*p.y+l.c)/(l.a*l.a+l.b*l.b) );
+	//zero division check should be done
+	if( (l.a == 0) && (l.b == 0) ){
+		return __DBL_MAX__
+	}else{
+		return ( std::abs(l.a*p.x+l.b*p.y+l.c)/(l.a*l.a+l.b*l.b) );
+	}
 }
 
 void RANSAC(std::vector<Point> &points,int32_t N,double T){
